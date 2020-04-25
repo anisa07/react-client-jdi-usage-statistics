@@ -1,0 +1,23 @@
+@import '../../styles/variables';
+
+.control {
+	display: flex;
+	flex-direction: column;
+
+	.label {
+		text-align: left;
+		margin-bottom: 10px;
+	}
+
+	.input {
+		font-size: 16px;
+		padding: 10px;
+		background: rgba($bright3, 0.5);
+		border-bottom: 2px solid rgba($bright3, 0.5);
+		color: $dark1;
+	}
+
+	.input:focus {
+		border-bottom: 2px solid rgba($dark1, 0.9);
+	}
+}

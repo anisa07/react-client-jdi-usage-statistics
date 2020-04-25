@@ -1,0 +1,27 @@
+@import '../styles/variables';
+
+.header {
+	height: 50px;
+	background: $dark3;
+	box-shadow: 2px 1px 1px $dark3;
+	display: flex;
+	padding: $global-padding;
+	justify-content: center;
+	align-items: center;
+
+	h1 {
+		margin-right: 10px;
+	}
+
+	.button {
+		min-width: 120px;
+		background: transparent;
+		border: 2px solid $bright3;
+		margin-right: 10px;
+	}
+
+	.button:active {
+		background: $bright2;
+		color: $bright3
+	}
+}

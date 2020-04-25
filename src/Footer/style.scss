@@ -1,0 +1,9 @@
+@import '../styles/variables';
+
+.footer {
+	background: $dark2;
+	font-size: 10px;
+	padding: $global-padding;
+	align-self: flex-end;
+}
+

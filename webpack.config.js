@@ -9,12 +9,13 @@ module.exports = function (env, argv) {
 		},
 		output: {
 			path: path.resolve(__dirname, 'dist'),
-			filename: 'bundle.js'
+			filename: 'bundle.js',
+			publicPath: '/',
 		},
 		module: {
 			rules: [
 				{
-					test: /\.js$|jsx/,
+					test: /\.jsx?$/,
 					exclude: /node_modules/,
 					use: {
 						loader: "babel-loader"
@@ -35,12 +36,25 @@ module.exports = function (env, argv) {
 						'css-loader',
 						'sass-loader',
 					],
+				},
+				{
+					test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+					use: [
+						{
+							loader: 'file-loader',
+							options: {
+								name: '[name].[ext]',
+								outputPath: 'fonts/'
+							}
+						}
+					]
 				}
 			]
 		},
 		devServer: {
 			contentBase:  path.resolve(__dirname, 'dist'),
-			port: 9000
+			port: 9000,
+			historyApiFallback: true
 		},
 		plugins: [
 			new HtmlWebpackPlugin({

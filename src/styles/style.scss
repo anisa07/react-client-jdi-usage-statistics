@@ -1,0 +1,37 @@
+@import "fonts";
+@import "variables";
+
+html, body {
+	margin: 0;
+	height: 100%;
+}
+
+body {
+	font-family: 'Monda', sans-serif;
+	background: $dark1;
+	color: $bright3;
+	min-height: 100%;
+}
+
+#react-app {
+	height: 100%;
+}
+
+input, button {
+	outline: none;
+	border: none;
+}
+
+.default-button {
+	cursor: pointer;
+	width: 100px;
+	font-size: 16px;
+	padding: 10px;
+	color: $bright3;
+	background: $bright2;
+}
+
+.default-button:active {
+	background: $dark2;
+	color: $bright1;
+}

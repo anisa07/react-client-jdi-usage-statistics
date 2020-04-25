@@ -1,0 +1,36 @@
+@import '../styles/variables';
+
+.form {
+	width: 600px;
+	min-height: 500px;
+	background: $bright2;
+	margin: 50px auto;
+	box-shadow: 5px 5px 5px $dark3;
+	padding: $global-padding;
+	box-sizing: border-box;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+
+	.login {
+		align-self: center;
+		background: $bright1;
+		color: $dark2;
+		margin-bottom: 10px;
+	}
+
+	.switch {
+		align-self: center;
+		width: 200px;
+		margin-bottom: 10px;
+	}
+
+	.switch:hover {
+		text-decoration: underline;
+	}
+
+	.switch:active {
+		background: transparent;
+		color: $dark2;
+	}
+}
