@@ -8,7 +8,6 @@ import './styles/style.scss';
 import './app.scss';
 
 const App = inject('store')(observer((props) => {
-  console.log(props);
   return (
     <main className="main">
       <Header />

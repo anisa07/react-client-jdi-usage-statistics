@@ -1,5 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const nodeExternals = require('webpack-node-externals');
+// const WebpackMd5Hash = require("webpack-md5-hash");
 
 module.exports = function (env, argv) {
 	return {
@@ -12,6 +15,8 @@ module.exports = function (env, argv) {
 			filename: 'bundle.js',
 			publicPath: '/',
 		},
+		target: argv.mode === 'development' ? "node" : "web", // update 23.12.2018
+		// externals: [nodeExternals()], // update 23.12.2018
 		module: {
 			rules: [
 				{
@@ -33,6 +38,7 @@ module.exports = function (env, argv) {
 					test: /\.s[ac]ss$/i,
 					use: [
 						'style-loader',
+						MiniCssExtractPlugin.loader,
 						'css-loader',
 						'sass-loader',
 					],
@@ -57,10 +63,14 @@ module.exports = function (env, argv) {
 			historyApiFallback: true
 		},
 		plugins: [
+			new MiniCssExtractPlugin({
+				filename: "style.css"
+			}),
 			new HtmlWebpackPlugin({
 				template: "./src/index.html",
 				filename: "./index.html"
-			})
+			}),
+			// new WebpackMd5Hash()
 		]
 	}
 };

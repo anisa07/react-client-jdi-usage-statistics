@@ -1,6 +1,9 @@
 import {observable, action} from 'mobx';
 
 class Store {
+	constructor(initialState){
+		// console.log(initialState);
+	}
 	@observable info = {};
 
 	@observable message = '';
@@ -20,5 +23,5 @@ class Store {
 	}
 }
 
-const store = new Store();
-export default store;
+// const store = new Store();
+export default Store;
