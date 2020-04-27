@@ -1,8 +1,8 @@
 import React from 'react';
 import { observer, inject } from "mobx-react";
 import { Routes } from './routes';
-import Header from './Header/Header';
-import Footer from './Footer/Footer';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import Modal from './components/Modal/Modal';
 import './styles/style.scss';
 import './app.scss';

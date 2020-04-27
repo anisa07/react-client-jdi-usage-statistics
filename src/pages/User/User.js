@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
-import Input from '../components/Input/Input';
-import { auth } from '../routes';
+import { observer, inject } from "mobx-react";
+import { useHistory } from "react-router-dom";
+import Input from '../../components/Input/Input';
+import { auth } from '../../routes';
+import { signIn } from '../../helpers/api';
+import { validateUsername, validatePassword } from '../../helpers/validators'
+
 import './style.scss';
 
-const User = (props) => {
+const User =  inject('store')(observer((props) => {
+	const history = useHistory();
+
+	const { setMessage, setAuth } = props.store;
   const [formType, setFormType] = useState('login');
 
   const [key, setKey] = useState('');
@@ -16,6 +24,25 @@ const User = (props) => {
 
   const [password2, setPassword2] = useState('');
   const [errPwd2, setErrPwd2] = useState(null);
+
+	const handleLogin = async (e) => {
+		e.preventDefault();
+		const userError = validateUsername(login);
+		const passwordError = validatePassword(password);
+
+		if (userError) return setErrLogin(userError);
+		if (passwordError) return setErrPwd(errPwd);
+
+		const auth = await signIn({ user: login, password }, setMessage);
+
+		if (auth.user) {
+			setAuth({
+      	user: auth.user,
+      	status: true
+      });
+      history.push('/');
+		}
+	}
 
   const loginForm = () => (
     <form className="form login-form">
@@ -34,7 +61,7 @@ const User = (props) => {
         error={errPwd}
         onChange={setPassword}
       />
-      <input type="submit" value="Login" className="default-button login" />
+      <input type="submit" value="Login" className="default-button login" onClick={handleLogin} />
       <button onClick={() => { setFormType('register'); }} className="default-button switch">Switch to Register Form</button>
     </form>
   	);
@@ -76,6 +103,6 @@ const User = (props) => {
 
   if (formType === 'login') return loginForm();
   if (formType === 'register') return registerForm();
-};
+}));
 
 export default User;

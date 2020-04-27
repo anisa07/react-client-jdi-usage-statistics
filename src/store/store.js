@@ -10,6 +10,8 @@ class Store {
 
 	@observable isAuthenticated = false;
 
+	@observable user = '';
+
 	@action setMessage = (data) => {
 		this.message = data;
 	};
@@ -18,9 +20,10 @@ class Store {
 		this.info = data;
 	};
 
-	@action setAuth = (data) => {
-		this.isAuthenticated = data;
-	}
+	@action setAuth = ({user, status}) => {
+		this.isAuthenticated = status;
+		this.user = user;
+	};
 }
 
 // const store = new Store();

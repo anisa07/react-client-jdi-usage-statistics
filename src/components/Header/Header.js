@@ -1,5 +1,5 @@
 import React from 'react';
-import { auth } from '../routes';
+import { auth } from '../../routes';
 import './style.scss';
 
 const Header = (props) => {
