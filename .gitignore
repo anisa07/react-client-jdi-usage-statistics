@@ -1,5 +1,8 @@
 node_modules
-dist
+dist/bundle.js
+dist/fonts
+dist/*.css
+dist/*.html
 keys
 .idea
 config.js

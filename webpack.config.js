@@ -1,8 +1,28 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlCriticalPlugin = require("html-critical-webpack-plugin");
+
+// const critical = require("critical");
 // const nodeExternals = require('webpack-node-externals');
 // const WebpackMd5Hash = require("webpack-md5-hash");
+
+// critical.generate({
+// 	/* The path of the Webpack bundle */
+// 	base: path.join(path.resolve(__dirname, 'dist')),
+// 	src: 'index.html',
+// 	dest: 'index.html',
+// 	inline: true,
+// 	extract: true,
+// 	// /* iPhone 6 dimensions, use whatever you like*/
+// 	// width: 375,
+// 	// height: 565,
+//
+// 	/* Ensure that bundled JS file is called */
+// 	penthouse: {
+// 		blockJSRequests: false,
+// 	}
+// });
 
 module.exports = function (env, argv) {
 	return {
@@ -70,7 +90,19 @@ module.exports = function (env, argv) {
 				template: "./src/index.html",
 				filename: "./index.html"
 			}),
-			// new WebpackMd5Hash()
-		]
+			new HtmlCriticalPlugin({
+				base: path.join(path.resolve(__dirname), 'dist/'),
+				src: 'index.html',
+				dest: 'index.html',
+				inline: true,
+				minify: true,
+				extract: true,
+				width: 375,
+				height: 565,
+				penthouse: {
+					blockJSRequests: false,
+				}
+			})
+		],
 	}
 };
