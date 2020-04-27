@@ -1,0 +1,16 @@
+@import '../styles/variables';
+
+.container {
+	background: $bright2;
+	padding: $global-padding;
+	box-shadow: 2px 1px 1px $dark3;
+	display: flex;
+	width: 800px;
+	margin: 15px auto 10px;
+
+	.items {
+		display: flex;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+	}
+}
