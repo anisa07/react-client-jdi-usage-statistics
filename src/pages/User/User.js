@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { observer, inject } from "mobx-react";
-import { useHistory } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import Input from '../../components/Input/Input';
 import { auth } from '../../routes';
 import { signIn } from '../../helpers/api';
@@ -8,9 +8,7 @@ import { validateUsername, validatePassword } from '../../helpers/validators'
 
 import './style.scss';
 
-const User =  inject('store')(observer((props) => {
-	const history = useHistory();
-
+const User = inject('store')(observer((props, context) => {
 	const { setMessage, setAuth } = props.store;
   const [formType, setFormType] = useState('login');
 
@@ -36,11 +34,8 @@ const User =  inject('store')(observer((props) => {
 		const auth = await signIn({ user: login, password }, setMessage);
 
 		if (auth.user) {
-			setAuth({
-      	user: auth.user,
-      	status: true
-      });
-      history.push('/');
+			setAuth(auth.user, true);
+      props.history.push('/')
 		}
 	}
 

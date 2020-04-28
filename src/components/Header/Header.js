@@ -1,18 +1,25 @@
 import React from 'react';
-import { auth } from '../../routes';
+import { observer, inject } from "mobx-react";
+import { withRouter } from 'react-router-dom';
+import { signOut } from '../../helpers/api';
 import './style.scss';
 
-const Header = (props) => {
-  const handleDeleteUser = () => {};
-  const handleLogout = () => {};
+const Header = inject('store')(observer((props) => {
+  const { isAuthenticated, user, setAuth } = props.store;
+  // const handleDeleteUser = () => {};
+  const handleLogout = async () => {
+    await signOut(user);
+    setAuth('', false);
+    props.history.push('/register');
+  };
 
   return (
     <header className="header">
       <h1>JDI Usage Statistics</h1>
-      { auth.isAuthenticated && <button className="default-button button">Logout</button> }
-      { auth.isAuthenticated && <button className="default-button button">Delete User</button> }
+      { isAuthenticated && <button className="default-button button" onClick={handleLogout}>Logout</button> }
+      {/*{ isAuthenticated && <button className="default-button button">Delete User</button> }*/}
     </header>
   );
-};
+}));
 
-export default Header;
+export default withRouter(Header)

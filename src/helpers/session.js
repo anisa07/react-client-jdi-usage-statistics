@@ -15,6 +15,6 @@ export const clearStorage = () => {
 export const getFromStorage = () => {
 	if (sessionStorage) {
 		const storageItem = JSON.parse(sessionStorage.getItem(key) || '{}');
-		return storageItem.token
+		return storageItem
 	}
 };

@@ -5,24 +5,22 @@ import User from './pages/User/User';
 import NotFound from './pages/NotFound/NotFound';
 import { getFromStorage } from './helpers/session'
 
-export const auth = {
-	isAuthenticated: getFromStorage()
-};
-
 const PrivateRoute = ({ component: Component, ...rest }) => {
+	const token = (getFromStorage() || {}).token;
 	return (<Route
 			{...rest}
 			render={(props) => {
-				return (auth.isAuthenticated ? <Component {...props} /> : <Redirect to="/register"/>)
+				return (!!token ? <Component {...props} /> : <Redirect to="/register"/>)
 			}}
 		/>)
 };
 
 const AuthRoute = ({ component: Component, ...rest }) => {
+	const token = (getFromStorage() || {}).token;
   return (<Route
     {...rest}
     render={(props) => {
-      return (!auth.isAuthenticated ? <Component {...props} /> : <Redirect to="/"/>)
+      return (!token ? <Component {...props} /> : <Redirect to="/"/>)
     }}
   />)
 };

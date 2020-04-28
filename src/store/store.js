@@ -1,4 +1,5 @@
 import {observable, action} from 'mobx';
+import { getFromStorage } from '../helpers/session'
 
 class Store {
 	constructor(initialState){
@@ -8,9 +9,9 @@ class Store {
 
 	@observable message = '';
 
-	@observable isAuthenticated = false;
+	@observable isAuthenticated = !!(getFromStorage() || {}).token;
 
-	@observable user = '';
+	@observable user = (getFromStorage() || {}).user;
 
 	@action setMessage = (data) => {
 		this.message = data;
@@ -20,7 +21,7 @@ class Store {
 		this.info = data;
 	};
 
-	@action setAuth = ({user, status}) => {
+	@action setAuth = (user, status) => {
 		this.isAuthenticated = status;
 		this.user = user;
 	};
