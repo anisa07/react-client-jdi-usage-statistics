@@ -2,11 +2,14 @@
 
 .item {
 	display: flex;
-	width: 300px;
 	margin: 10px;
 
 	.label {
 		text-align: left;
 		margin-right: 10px;
+	}
+
+	.value {
+		overflow: hidden;
 	}
 }
