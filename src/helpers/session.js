@@ -1,20 +1,19 @@
 const key = '__jdi-impossible_token';
 
 export const setToStorage = (data) => {
-	if (sessionStorage) {
+	if (typeof window !== 'undefined') {
 		sessionStorage.setItem(key, JSON.stringify(data));
 	}
 };
 
 export const clearStorage = () => {
-	if (sessionStorage) {
+	if (typeof window !== 'undefined') {
 		sessionStorage.removeItem(key);
 	}
 };
 
 export const getFromStorage = () => {
-	if (sessionStorage) {
-		const storageItem = JSON.parse(sessionStorage.getItem(key) || '{}');
-		return storageItem
+	if (typeof window !== 'undefined') {
+		return JSON.parse(sessionStorage.getItem(key) || '{}');
 	}
 };
