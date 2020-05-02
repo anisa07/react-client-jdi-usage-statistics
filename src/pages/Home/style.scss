@@ -1,10 +1,18 @@
 @import '../../styles/variables';
 
 .container {
-	background: $bright2;
-	padding: $global-padding;
-	box-shadow: 2px 1px 1px $dark3;
-	display: flex;
-	width: 1200px;
-	margin: 15px auto 10px;
+	// box-shadow: 2px 1px 1px $dark3;
+	//display: flex;
+
+	.items {
+		padding: $global-padding;
+		background: $bright2;
+		width: 600px;
+		margin: 15px auto 10px;
+	}
+
+	.charts {
+		margin: 15px auto 10px;
+		width: fit-content;
+	}
 }
