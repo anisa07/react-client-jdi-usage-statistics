@@ -37,7 +37,7 @@ const User = inject('store')(observer((props, context) => {
 			setAuth(auth.user, true);
       props.history.push('/')
 		}
-	}
+	};
 
   const loginForm = () => (
     <form className="form login-form">

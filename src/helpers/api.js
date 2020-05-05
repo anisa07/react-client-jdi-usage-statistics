@@ -7,7 +7,6 @@ export const signIn = async ({ user, password }, setError) => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				'Access-Control-Allow-Origin': '*'
 			},
 			body: JSON.stringify({
 				user,
@@ -18,7 +17,6 @@ export const signIn = async ({ user, password }, setError) => {
 		setToStorage(json);
 		return json;
 	} catch (e) {
-		console.log(e)
 		setError(e.message);
 	}
 };
