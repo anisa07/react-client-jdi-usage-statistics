@@ -33,7 +33,7 @@ const User = inject('store')(observer((props, context) => {
 
 		const auth = await signIn({ user: login, password }, setMessage);
 
-		if (auth.user) {
+		if (auth && auth.user) {
 			setAuth(auth.user, true);
       props.history.push('/')
 		}

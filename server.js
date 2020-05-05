@@ -11,7 +11,7 @@ import { renderToString } from'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import compression from 'compression';
 import robots from 'robots.txt';
-import App from'./src/App.js';
+import App from './src/App';
 import Store from "./src/store/store";
 
 register(['.sass', '.scss']);
