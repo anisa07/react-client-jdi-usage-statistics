@@ -20,7 +20,6 @@ const store = new Store();
 
 const app = express();
 app.use(compression());
-app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(robots(__dirname + '/robots.txt'));
 app.use('/', express.static(path.join(__dirname, 'dist')));

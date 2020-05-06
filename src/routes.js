@@ -1,40 +1,45 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import Home from './pages/Home/Home';
-import User from './pages/User/User';
-import NotFound from './pages/NotFound/NotFound';
+import loadable from '@loadable/component';
+
 import { getFromStorage } from './helpers/session'
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const LazyLoadPage = loadable(({page}) => import(`./pages/${page}/${page}`));
+
+const PrivateRoute = ({ component, ...rest }) => {
 	const token = (getFromStorage() || {}).token;
-	return (<Route
-			{...rest}
-			render={(props) => {
-				return (!!token ? <Component {...props} /> : <Redirect to="/register"/>)
-			}}
-		/>)
+
+	return (
+		<Route {...rest}>
+			{ !token ? <LazyLoadPage page={component} /> : <Redirect to="/register" /> }
+		</Route>
+	)
 };
 
-const AuthRoute = ({ component: Component, ...rest }) => {
+const AuthRoute = ({ component, ...rest }) => {
 	const token = (getFromStorage() || {}).token;
-  return (<Route
-    {...rest}
-    render={(props) => {
-      return (!token ? <Component {...props} /> : <Redirect to="/"/>)
-    }}
-  />)
+
+	return (
+		<Route {...rest}>
+			{ !token ? <LazyLoadPage page={component} /> : <Redirect to="/" /> }
+		</Route>
+	)
 };
 
-export const Routes = (props) => (<Switch>
+export const Routes = () => (
+	<Switch>
 		<PrivateRoute
 			exact
 			path="/"
-			component={Home}
+			component="Home"
 		/>
     <AuthRoute
       exact
       path="/register"
-      component={User}
+      component="User"
     />
-		<Route component={NotFound}/>
-	</Switch>);
+		<Route>
+			<LazyLoadPage page="NotFound" />
+		</Route>
+	</Switch>
+);
