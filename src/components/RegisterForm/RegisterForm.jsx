@@ -56,6 +56,7 @@ const RegisterForm = (props) => {
 				onChange={setPassword2}
 			/>
 			<input type="submit" value="Register" className="default-button login" onClick={handleRegister}/>
+			<button onClick={props.setLogin} className="default-button switch">Switch to Login Form</button>
 		</form>
 	);
 };

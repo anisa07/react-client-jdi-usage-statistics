@@ -8,16 +8,18 @@ import './styles/style.scss';
 import './app.scss';
 
 const App = inject('store')(observer((props) => {
-  return (
-    <main className="main">
-      <Header />
-      {/* <Modal /> */}
-      <div className="page-container">
-        <Routes />
-      </div>
-      <Footer />
-    </main>
-  )
+	const { message, setMessage } = props.store;
+	const clearMessage = () => {
+		setMessage('')
+	};
+	return (<main className="main">
+			<Header/>
+			<div className="page-container">
+				<Routes/>
+        {message && <Modal message={message} clearMessage={clearMessage}/>}
+			</div>
+			<Footer/>
+		</main>)
 }));
 
 export default App;
