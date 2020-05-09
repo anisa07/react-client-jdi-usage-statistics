@@ -6,7 +6,7 @@ import './style.scss';
 
 const Header = inject('store')(observer((props) => {
   const { isAuthenticated, user, setAuth } = props.store;
-  // const handleDeleteUser = () => {};
+
   const handleLogout = async () => {
     await signOut(user);
     setAuth('', false);
@@ -17,7 +17,6 @@ const Header = inject('store')(observer((props) => {
     <header className="header">
       <h1>JDI Usage Statistics</h1>
       { isAuthenticated && <button className="default-button button" onClick={handleLogout}>Logout</button> }
-      {/*{ isAuthenticated && <button className="default-button button">Delete User</button> }*/}
     </header>
   );
 }));

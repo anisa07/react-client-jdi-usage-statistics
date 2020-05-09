@@ -6,3 +6,4 @@ dist/*.html
 keys
 .idea
 config.js
+.env

@@ -10,7 +10,6 @@ const Home = inject('store')(observer((props) => {
 	const lastMonth = Date.now() - (3600000 * 24 * 30);
 	const [ result, setResult ] = useState(undefined);
 	const [ totalUsers, setTotalUsers ] = useState([]);
-	// const [totalProjects, setTotalProjects] = useState([]);
 	const [ intensity, setIntensity ] = useState([]);
 	const [ activeSessions, setActiveSessions ] = useState([]);
 	const [ newProjects, setNewProjects ] = useState([]);

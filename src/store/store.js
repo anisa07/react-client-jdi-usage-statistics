@@ -3,7 +3,6 @@ import { getFromStorage } from '../helpers/session'
 
 class Store {
 	constructor(initialState){
-		// console.log(initialState);
 	}
 	@observable info = {};
 
@@ -27,5 +26,4 @@ class Store {
 	};
 }
 
-// const store = new Store();
 export default Store;
