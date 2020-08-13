@@ -29,7 +29,7 @@
     "react-vis": "^1.11.7",
     "regenerator-runtime": "^0.13.5",
     "robots.txt": "^1.1.0",
-    "serialize-javascript": "^3.0.0"
+    "serialize-javascript": "^3.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
